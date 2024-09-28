@@ -52,13 +52,13 @@ All changes are saved in the files for future reference.
 
 ## Project Screenshots:
 
-!image](https://raw.githubusercontent.com/upendraguptaoffice/Thread/main/Screenshot/Thread_SS_1.png)
-!image](https://raw.githubusercontent.com/upendraguptaoffice/Thread/main/Screenshot/Thread_SS_2.png)
-!image](https://raw.githubusercontent.com/upendraguptaoffice/Thread/main/Screenshot/Thread_SS_3.png)
-!image](https://raw.githubusercontent.com/upendraguptaoffice/Thread/main/Screenshot/Thread_SS_4.png)
-!image](https://raw.githubusercontent.com/upendraguptaoffice/Thread/main/Screenshot/Thread_SS_5.png)
-!image](https://raw.githubusercontent.com/upendraguptaoffice/Thread/main/Screenshot/Thread_SS_6.png)
--screenshot](ss1 "Project Screenshot")
+![project-image](https://raw.githubusercontent.com/upendraguptaoffice/Thread/main/Screenshot/Thread_SS_1.png)
+![project-image](https://raw.githubusercontent.com/upendraguptaoffice/Thread/main/Screenshot/Thread_SS_2.png)
+![project-image](https://raw.githubusercontent.com/upendraguptaoffice/Thread/main/Screenshot/Thread_SS_3.png)
+![project-image](https://raw.githubusercontent.com/upendraguptaoffice/Thread/main/Screenshot/Thread_SS_4.png)
+![project-image](https://raw.githubusercontent.com/upendraguptaoffice/Thread/main/Screenshot/Thread_SS_5.png)
+![project-image](https://raw.githubusercontent.com/upendraguptaoffice/Thread/main/Screenshot/Thread_SS_6.png)
+
 
 ## 🧐 Features
 
