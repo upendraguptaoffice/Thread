@@ -1,110 +1,89 @@
-<h1 align="center" id="title">Thread (Auto core binding tool)</h1>
+# Thread (Auto Core Binding Tool)
 
-<p align="center">
-    <img src="https://raw.githubusercontent.com/upendraguptaoffice/Thread/main/Thread.png" alt="project-image" style="width: 25%;">
+![project-image](https://raw.githubusercontent.com/upendraguptaoffice/Thread/main/Thread.png)
 
-<p id="description"><meta charset="UTF-8"> <meta name="viewport" content="width=device-width initial-scale=1.0"> <title>Thread Core Binding Tool by Upendra</title> <style>body { font-family: Arial sans-serif; line-height: 1.6; margin: 20px; background-color: #f9f9f9; color: #333; } h1 { color: #2c3e50; } h2 { color: #2980b9; } h3 { color: #27ae60; } pre { background-color: #eef; padding: 10px; border: 1px solid #ccc; overflow-x: auto; } .feature { margin: 15px 0; padding: 10px; background-color: #ffffff; border: 1px solid #ddd; border-radius: 5px; } .note { font-style: italic; color: #666; }</style></p>
+## Overview
+This tool automates CPU core management, checks isolated cores, and assigns cores to run cells based on user input. It auto-converts core values to hexadecimal and updates the respective configuration files.
 
-<h1>Thread Core Binding Tool by Upendra</h1>
+---
 
-<h2>Overview</h2>
-
-<p>This tool automates CPU core management checks isolated cores and assigns cores to run cells based on user input. It auto-converts core values to hexadecimal and updates the respective configuration files.</p>
-
-* * *
-
-<h2>Key Features</h2>
+## Key Features
 
 ### Analyze CPU Information:
-
-*   Isolated physical and sibling cores.
+- Isolated physical and sibling cores.
 
 ### Auto-Check:
-
-*   For sufficient cores to run the selected number of cells.
+- For sufficient cores to run the selected number of cells.
 
 ### Core Value Conversion:
-
-*   Automatically assign and convert core values to hexadecimal.
+- Automatically assign and convert core values to hexadecimal.
 
 ### User Tweaks:
+- Allows users to adjust core assignments before applying changes.
 
-*   Allows users to adjust core assignments before applying changes.
+---
 
-* * *
+## Core Conversion Formula
 
-<h2>Core Conversion Formula</h2>
+**Total Sum = Σ (i=1 to k) 2^n<sub>i</sub>**
 
-<p><strong>Total Sum = Σ (i=1 to k) 2<sup>n<sub>i</sub></sup></strong></p>
+*Note: Where n<sub>i</sub> are the individual integer inputs provided by the user.*
 
-<p class="note">*Where n<sub>i</sub> are the individual integer inputs provided by the user.*</p>
+---
 
-* * *
+## How to Use
 
-<h2>How to Use</h2>
+**1. Install Prerequisites:**
+Run `requirements.sh`.
 
-<p>
-    <strong><em>1. Install Prerequisites:</em></strong> <br>
-    Run <code>requirements.sh</code>. <br><br>
+**2. Run the Tool:**
+Execute `python3 Thread.py`.
 
-    <strong><em>2. Run the Tool:</em></strong> <br>
-    Execute <code>python3 Thread.py</code>. <br><br>
+**3. Key Functions:**
+- Show CPU Info
+- Cells to Configure
+- Core Alignment
 
-    <strong><em>3. Key Functions:</em></strong> <br>
-    <ul>
-        <li><code>Show CPU Info</code></li>
-        <li><code>Cells to Configure</code></li>
-        <li><code>Core Alignment</code></li>
-    </ul>
-</p>
+All changes are saved in the files for future reference.
 
-
-<p>All changes are saved in the files for future reference.</p>
-
-<h2>🚀 Demo</h2>
+## 🚀 Demo
 
 [DEMO](DEMO)
 
-<h2>Project Screenshots:</h2>
+## Project Screenshots:
 
-<img src="ss1" alt="project-screenshot" width="ss2" height="ss3/">
+![project-screenshot](ss1 "Project Screenshot")
 
-  
-  
-<h2>🧐 Features</h2>
+## 🧐 Features
 
 Here're some of the project's best features:
+- Show CPU Info
+- Calculate Cells to Configure
+- Auto Core Alignment
 
-*   Show CPU Info
-*   Calculate Cells to Configure
-*   Auto Core Alignment
+## 🛠️ Installation Steps:
 
-<h2>🛠️ Installation Steps:</h2>
+1. Install Python:
 
-<p>1. Install Python</p>
+    ```bash
+    sudo apt update && sudo apt install python3 python3-pip -y && python3 --version && pip3 --version
+    ```
 
-```
-sudo apt update && sudo apt install python3 python3-pip -y && python3 --version && pip3 --version
-```
+2. Install Prerequisites:
 
-<p>2. Install Prerequisites</p>
+    ```bash
+    ./requirements.sh
+    ```
 
-```
-./requirements.sh
-```
+3. Execute `Thread.py`:
 
-<p>3. Execute Thread.py</p>
+    ```bash
+    python3 Thread.py
+    ```
 
-```
-python3 Thread.py
-```
-
-  
-  
-<h2>💻 Built with</h2>
+## 💻 Built with
 
 Technologies used in the project:
-
-*   Python
-*   Tkinter
-*   Bash Scripting
+- Python
+- Tkinter
+- Bash Scripting
