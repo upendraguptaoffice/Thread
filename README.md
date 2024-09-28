@@ -1,6 +1,7 @@
 <h1 align="center" id="title">Thread (Auto core binding tool)</h1>
 
-<p align="center"><img src="https://socialify.git.ci/upendraguptaoffice/Thread/image?description=1&amp;font=Inter&amp;language=1&amp;name=1&amp;pattern=Solid&amp;theme=Dark" alt="project-image"></p>
+<p align="center">
+    <img src="https://raw.githubusercontent.com/upendraguptaoffice/Thread/main/Thread.png" alt="project-image" style="width: 25%;">
 
 <p id="description"><meta charset="UTF-8"> <meta name="viewport" content="width=device-width initial-scale=1.0"> <title>Thread Core Binding Tool by Upendra</title> <style>body { font-family: Arial sans-serif; line-height: 1.6; margin: 20px; background-color: #f9f9f9; color: #333; } h1 { color: #2c3e50; } h2 { color: #2980b9; } h3 { color: #27ae60; } pre { background-color: #eef; padding: 10px; border: 1px solid #ccc; overflow-x: auto; } .feature { margin: 15px 0; padding: 10px; background-color: #ffffff; border: 1px solid #ddd; border-radius: 5px; } .note { font-style: italic; color: #666; }</style></p>
 
@@ -42,22 +43,23 @@
 
 <h2>How to Use</h2>
 
-1.  **Install Prerequisites:**  
-    
-    Run `requirements.sh`.
-    
-2.  **Run the Tool:**  
-    
-    Execute `python3 Thread.py`.
-    
-3.  **Key Functions:**
-    *   `Show CPU Info`
-    *   `Cells to Configure`
-    *   `Core Alignment`
+<p>
+    <strong><em>1. Install Prerequisites:</em></strong> <br>
+    Run <code>requirements.sh</code>. <br><br>
+
+    <strong><em>2. Run the Tool:</em></strong> <br>
+    Execute <code>python3 Thread.py</code>. <br><br>
+
+    <strong><em>3. Key Functions:</em></strong> <br>
+    <ul>
+        <li><code>Show CPU Info</code></li>
+        <li><code>Cells to Configure</code></li>
+        <li><code>Core Alignment</code></li>
+    </ul>
+</p>
+
 
 <p>All changes are saved in the files for future reference.</p>
-
-* * *
 
 <h2>🚀 Demo</h2>
 
