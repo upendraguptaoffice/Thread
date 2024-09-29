@@ -48,7 +48,7 @@ All changes are saved in the files for future reference.
 
 ## 🚀 Demo
 
-[DEMO](https://youtu.be/9z9bx_hJTFE)
+[DEMO](https://youtu.be/xV7hNoxn2n4)
 
 ## Project Screenshots:
 
