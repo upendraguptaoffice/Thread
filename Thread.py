@@ -170,14 +170,14 @@ def ask_for_core_binding():
             gnb_du_dir = lines[2].split(": ", 1)[1].strip()
     
     # Prepopulate the dialog boxes with the existing paths (or empty if they don't exist)
-    l1_path = simpledialog.askstring("L1 Path", "Enter the L1 Path:", initialvalue=l1_dir.replace("/bin/nr5g/gnb/l1/", ""))
-    gnb_path = simpledialog.askstring("gNB Path", "Enter the gNB Path:", initialvalue=gnb_cu_dir.replace("/gNB_CU/cfg", ""))
+    l1_path = simpledialog.askstring("L1 Path", "Enter the L1 Path:", initialvalue=l1_dir.replace("l1/", ""))
+    gnb_path = simpledialog.askstring("gNB Path", "Enter the gNB Path:", initialvalue=gnb_cu_dir.replace("cfg", ""))
 
     # Validate the input and update the paths
     if l1_path and gnb_path:
-        l1_dir = f"{l1_path}/bin/nr5g/gnb/l1/"
-        gnb_cu_dir = f"{gnb_path}/gNB_CU/cfg"
-        gnb_du_dir = f"{gnb_path}/gNB_DU/cfg"
+        l1_dir = f"{l1_path}l1/"
+        gnb_cu_dir = f"{gnb_path}cu_cfg"
+        gnb_du_dir = f"{gnb_path}du_cfg"
 
         # Show the entered paths
         messagebox.showinfo("Core Binding", f"L1 Path Directory: {l1_dir}\n"
@@ -326,41 +326,35 @@ def do_core_alignment_pre():
 
         # Rule-based thread-core mapping with dynamic paths
         core_allocation = [
-            ("systemThread,wlsNrtThread,timerThread,radioDpdkMaster,phyStatsLogThread", f"{l1_dir}/phycfg_xran.xml", physical_cores[0]),
-            ("DU_OAM_THREAD_AFFINITY,DU_OAM_LOGGER_THREAD_AFFINITY", f"{gnb_du_dir}/gNB_DU_Configuration.cfg", sibling_cores[0]),
-            ("DU_MGR_THREAD_AFFINITY,DU_MGR_LOGGER_THREAD_AFFINITY", f"{gnb_du_dir}/gNB_DU_Configuration.cfg", sibling_cores[0]),
-            ("xRANWorker", f"{l1_dir}/xrancfg_sub6.xml", physical_cores[1]),
-            ("xRANThread", f"{l1_dir}/xrancfg_sub6.xml", sibling_cores[1]),
-            ("MAC_SLOT_HDLR_THREAD_AFFINITY,RLC_MAC_MAIN_THREAD_AFFINITY", f"{gnb_du_dir}/gNB_DU_Configuration.cfg", physical_cores[2]),
-            ("MAC_GLOBAL_SCH_THREAD_AFFINITY,MAC_URLLC_MASTER_THREAD_AFFINITY", f"{gnb_du_dir}/gNB_DU_Configuration.cfg", physical_cores[2]),
-            ("F1_DU_WORKER_THREAD_AFFINITY,RLC_MASTER_THREAD_AFFINITY,RLC_WORKER_THREAD_AFFINITY", f"{gnb_du_dir}/gNB_DU_Configuration.cfg", sibling_cores[2]),
-            ("RLC_TIMER_THREAD_AFFINITY,RLC_ACCUMULATOR_THREAD_AFFINITY", f"{gnb_du_dir}/gNB_DU_Configuration.cfg", sibling_cores[2]),
-            ("RECV_DATA_THREAD_AFFINITY,DU_PR_GTPU_THREAD_AFFINITY,DU_PR_ACCUMULATOR_THREAD_AFFINITY", f"{gnb_du_dir}/gNB_DU_Configuration.cfg", physical_cores[3]),
-            ("F1_WORKER_CORE,PDCP_WORKER_AFTER_ASYNC_CORE,MULTI_ACCUMULATOR_CORE", f"{gnb_cu_dir}/gNodeB_CU_Configuration.cfg", sibling_cores[3]),
-            ("RECEIVER_CORE,X2_WORKER_CORE,ASYNC_CORE,MASTER_CORE", f"{gnb_cu_dir}/gNodeB_CU_Configuration.cfg", physical_cores[4]),
-            ("PDCP_WORKER_CORE", f"{gnb_cu_dir}/gNodeB_CU_Configuration.cfg", sibling_cores[4]),
-            ("BIN_READER_CORE,PR_CONTROL_THR_CORE,ACCUMULATOR_CORE", f"{gnb_cu_dir}/gNodeB_CU_Configuration.cfg", physical_cores[5]),
-            ("PR_ACCUMULATOR_CORE,TIMER_CORE,OAM_SHARED_CORE_BITMAP", f"{gnb_cu_dir}/gNodeB_CU_Configuration.cfg", physical_cores[5]),
-            ("L3_SHARED_CORE_BITMAP,PDCP_SHRED_CORE_BITMAP,RRM_SHARED_CORE_BITMAPSON_SHARED_CORE_BITMAP", f"{gnb_cu_dir}/gNodeB_CU_Configuration.cfg", physical_cores[5]),
+            ("L1_core1,L1_core2,L1_core3", f"{l1_dir}/l1_cfg", physical_cores[0]),
+            ("DU_core1,DU_core2,DU_core3", f"{gnb_du_dir}/du_cfg", sibling_cores[0]),
+            ("CU_core1,CU_core2,CU_core3", f"{gnb_du_dir}/cu_cfg", sibling_cores[0]),
+            ("OAM_core1,OAM_core2,OAM_core3", f"{l1_dir}/oam_cfg", physical_cores[1]),
+            ("O1_core1,O1_core2,O1_core3", f"{l1_dir}/o1_cfg", sibling_cores[1]),
+            ("F1_core1,F1_core2,F1_core3", f"{gnb_du_dir}/f1_cfg", physical_cores[2]),
+            ("PHY_core1,PHY_core2,PHY_core3", f"{gnb_du_dir}/phy_cfg", physical_cores[2]),
+            ("PDCP_core1,PDCP_core2,PDCP_core3", f"{gnb_du_dir}/pdcp_cfg", sibling_cores[2]),
+            ("RLC_core1,RLC_core2,RLC_core3", f"{gnb_du_dir}/rlc_cfg", sibling_cores[2]),
+            ("MAC_core1,MAC_core2,MAC_core3", f"{gnb_du_dir}/mac_cfg", physical_cores[3]),
         ]
 
         # Additional rules for cells
         if num_cells == 1:
-            core_allocation.append(("BbuPoolThreadDefault_0_63", f"{l1_dir}/phycfg_xran.xml", physical_cores[6], sibling_cores[6]))
-            core_allocation.append(("MAC_LOW_PRIO_CTRL_THREAD_AFFINITY", f"{gnb_du_dir}/gNB_DU_Configuration.cfg", physical_cores[7]))
-            core_allocation.append(("MAC_TX_CTL_DATA_THREAD_AFFINITY", f"{gnb_du_dir}/gNB_DU_Configuration.cfg", sibling_cores[7]))
+            core_allocation.append(("bbu", f"{l1_dir}/l1_cfg", physical_cores[6], sibling_cores[6]))
+            core_allocation.append(("maclow", f"{gnb_du_dir}/du_cfg", physical_cores[7]))
+            core_allocation.append(("mactx", f"{gnb_du_dir}/du_cfg", sibling_cores[7]))
         elif num_cells == 2:
-            core_allocation.append(("BbuPoolThreadDefault_0_63", f"{l1_dir}/phycfg_xran.xml", physical_cores[6:9], sibling_cores[6:9]))
-            core_allocation.append(("MAC_LOW_PRIO_CTRL_THREAD_AFFINITY", f"{gnb_du_dir}/gNB_DU_Configuration.cfg", physical_cores[9:11]))
-            core_allocation.append(("MAC_TX_CTL_DATA_THREAD_AFFINITY", f"{gnb_du_dir}/gNB_DU_Configuration.cfg", sibling_cores[9:11]))
+            core_allocation.append(("bbu", f"{l1_dir}/l1_cfg", physical_cores[6:9], sibling_cores[6:9]))
+            core_allocation.append(("maclow", f"{gnb_du_dir}/du_cfg", physical_cores[9:11]))
+            core_allocation.append(("mactx", f"{gnb_du_dir}/du_cfg", sibling_cores[9:11]))
         elif num_cells == 3:
-            core_allocation.append(("BbuPoolThreadDefault_0_63", f"{l1_dir}/phycfg_xran.xml", physical_cores[6:11], sibling_cores[6:11]))
-            core_allocation.append(("MAC_LOW_PRIO_CTRL_THREAD_AFFINITY", f"{gnb_du_dir}/gNB_DU_Configuration.cfg", physical_cores[11:14]))
-            core_allocation.append(("MAC_TX_CTL_DATA_THREAD_AFFINITY", f"{gnb_du_dir}/gNB_DU_Configuration.cfg", sibling_cores[11:14]))
+            core_allocation.append(("bbu", f"{l1_dir}/l1_cfg", physical_cores[6:11], sibling_cores[6:11]))
+            core_allocation.append(("maclow", f"{gnb_du_dir}/du_cfg", physical_cores[11:14]))
+            core_allocation.append(("mactx", f"{gnb_du_dir}/du_cfg", sibling_cores[11:14]))
         elif num_cells == 4:
-            core_allocation.append(("BbuPoolThreadDefault_0_63", f"{l1_dir}/phycfg_xran.xml", physical_cores[6:12], sibling_cores[6:12]))
-            core_allocation.append(("MAC_LOW_PRIO_CTRL_THREAD_AFFINITY", f"{gnb_du_dir}/gNB_DU_Configuration.cfg", physical_cores[12:16]))
-            core_allocation.append(("MAC_TX_CTL_DATA_THREAD_AFFINITY", f"{gnb_du_dir}/gNB_DU_Configuration.cfg", sibling_cores[12:16]))
+            core_allocation.append(("bbu", f"{l1_dir}/l1_cfg", physical_cores[6:12], sibling_cores[6:12]))
+            core_allocation.append(("maclow", f"{gnb_du_dir}/du_cfg", physical_cores[12:16]))
+            core_allocation.append(("mactx", f"{gnb_du_dir}/du_cfg", sibling_cores[12:16]))
 
         return core_allocation
 
@@ -549,9 +543,9 @@ def implement_core_binding():
             # Loop through each threadname and apply the corresponding rule
             for thread in threadnames:
                 core_list = cores.split(',') if ',' in cores else [cores]
-                if thread in ['BIN_READER_CORE', 'PR_CONTROL_THR_CORE', 'ACCUMULATOR_CORE', 'PR_ACCUMULATOR_CORE', 'TIMER_CORE' , 'OAM_SHARED_CORE_BITMAP' , 'L3_SHARED_CORE_BITMAP' , 'PDCP_SHRED_CORE_BITMAP' , 'RRM_SHARED_CORE_BITMAPSON_SHARED_CORE_BITMAP']:
+                if thread in ['bin']:
                     content = replace_core_number_after_equal(thread, core_list[0], content)
-                elif thread in ['systemThread', 'wlsNrtThread', 'timerThread', 'radioDpdkMaster', 'phyStatsLogThread', 'xRANThread']:
+                elif thread in ['systemmThreads']:
                     pattern = re.compile(rf'<{thread}>\s*([\d,\s]+)\s*</{thread}>')
 
                     def process_match(match):
@@ -559,9 +553,9 @@ def implement_core_binding():
                         return replace_first_core_number(thread, core_list[0], core_numbers)
 
                     content = pattern.sub(process_match, content)
-                elif thread == 'xRANWorker':
+                elif thread == 'RANWorker':
                     content = update_xranworker_core(thread, core_list, content)
-                elif thread == 'BbuPoolThreadDefault_0_63':
+                elif thread == 'bbu':
                     content = update_bbupoolthread_core(thread, core_list, content)
                 else:
                     content = update_generic_thread_core(thread, core_list, content)
